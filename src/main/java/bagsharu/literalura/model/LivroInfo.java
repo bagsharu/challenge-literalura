@@ -16,7 +16,7 @@ public record LivroInfo(@JsonAlias("title") String tituloLivro,
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 record AutorInfo(@JsonAlias("name") String nomeAutor,
-                        @JsonAlias("birth_year") LocalDate anoNascimento,
-                        @JsonAlias("death_year") LocalDate anoFalecimento){
+                        @JsonAlias("birth_year") String anoNascimento,
+                        @JsonAlias("death_year") String anoFalecimento){
 
 }
