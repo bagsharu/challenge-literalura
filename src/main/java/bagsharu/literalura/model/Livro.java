@@ -1,17 +1,31 @@
 package bagsharu.literalura.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "livros")
 public class Livro {
 
-    private Integer count;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
 
-    public Integer getCount() {
-        return count;
+    @Column(unique = true)
+    private String tituloLivro;
+    private String linguagemLivro;
+    private String autorLivro;
+    private Integer downloadTotal;
+
+    public Livro() {
+
     }
 
-    @Override
-    public String toString() {
-        return "Livro{" +
-                "count=" + count +
-                '}';
+    public Livro(LivroInfo livroInfo) {
+
+        this.tituloLivro = livroInfo.tituloLivro();
+        this.autorLivro = livroInfo.autorLivro().get(0).nomeAutor();
+        this.linguagemLivro = livroInfo.linguagemLivro().get(0);
+        this.downloadTotal = livroInfo.downloadTotal();
     }
+
 }
