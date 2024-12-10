@@ -28,4 +28,23 @@ public class Livro {
         this.downloadTotal = livroInfo.downloadTotal();
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getTituloLivro() {
+        return tituloLivro;
+    }
+
+    public String getLinguagemLivro() {
+        return linguagemLivro;
+    }
+
+    public String getAutorLivro() {
+        return autorLivro;
+    }
+
+    public Integer getDownloadTotal() {
+        return downloadTotal;
+    }
 }

@@ -32,4 +32,23 @@ public class Autor {
         this.anoFalecimento = Integer.valueOf(autorInfo.anoFalecimento());
     }
 
+    public String getNomeAutor() {
+        return nomeAutor;
+    }
+
+    public Integer getAnoNascimento() {
+        return anoNascimento;
+    }
+
+    public Integer getAnoFalecimento() {
+        return anoFalecimento;
+    }
+
+    public List<Livro> getLivrosAutor() {
+        return livrosAutor;
+    }
+
+    public Long getId() {
+        return id;
+    }
 }
