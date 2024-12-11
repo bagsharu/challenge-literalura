@@ -57,17 +57,31 @@ public class Principal {
         System.out.println(TEXTO_MENU);
     }
 
-    //
+    // Busca um livro pela API Gutendex
     public void BuscarTitulo () {
-        System.out.println("Insira o título do livro que deseja buscar:");
 
+        // Recebe da entrada do usuário o titulo
+        System.out.println("Insira o título do livro que deseja buscar:");
         String buscarTitulo = scanner.nextLine();
 
+        // Recebe dados da APi a partir do titulo informado
         var json = consultas.requestData(buscarTitulo.replace(" ", "%20"));
         //System.out.println("json: " + json);
         var dados = converter.converterDados(json, Gutendex.class);
         //System.out.println("dados" + dados);
 
+        // Validação das informacoes recebidas
+        if (dados.livrosBusca().isEmpty()) {
+            System.out.println("Título não encontrado.");
+        } else {
+            // Recebe o primeiro livro do array "results"
+            LivroInfo livroInfo = dados.livrosBusca().get(0);
+            System.out.println("Dados do título: " + livroInfo);
+
+            // Instancia um objeto de Livro com todas as informacoes da API
+            Livro livro = new Livro(livroInfo);
+            System.out.println(livro);
+        }
     }
 
     }
