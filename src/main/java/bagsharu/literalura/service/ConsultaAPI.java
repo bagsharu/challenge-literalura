@@ -10,7 +10,7 @@ public class ConsultaAPI {
     public String requestData(String url) {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url))
+                .uri(URI.create("https://gutendex.com/books/?search=" + url))
                 .build();
         HttpResponse<String> response = null;
         try {
