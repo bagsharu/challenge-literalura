@@ -1,46 +1,74 @@
 package bagsharu.literalura.main;
 
+import bagsharu.literalura.model.Gutendex;
 import bagsharu.literalura.model.Livro;
 import bagsharu.literalura.model.LivroInfo;
+import bagsharu.literalura.repository.LivrosRepository;
+import bagsharu.literalura.service.ConsultaAPI;
+import bagsharu.literalura.service.ConverteDados;
 
 import java.util.Scanner;
 
 public class Principal {
 
-    private final String URL_BASE = "https://gutendex.com/books?search=";
+    private LivrosRepository repository;
 
     private Scanner scanner = new Scanner(System.in);
     private Menu controleMenu = new Menu();
 
+    private ConsultaAPI consultas = new ConsultaAPI();
+    private ConverteDados converter = new ConverteDados();
 
-    public void IniciarMenu() {
-        int control = -1;
+    public Principal(LivrosRepository repository) {
+        this.repository = repository;
+    }
 
-        while (control != 0) {
+        public void IniciarMenu() {
+            int control = -1;
 
-            controleMenu.ImprimeMenu();
-            control = scanner.nextInt();
-            scanner.nextLine();
+            while (control != 0) {
 
-            switch (control) {
-                case (1):
-                    System.out.println("Qual livro deseja buscar?");
-                    var busca = scanner.nextLine();
-                    var URL = URL_BASE + busca;
+                ImprimeMenu();
+                control = scanner.nextInt();
+                scanner.nextLine();
 
-                    LivroInfo livroBusca = controleMenu.buscarLivro(URL);
-                    Livro livro = new Livro(livroBusca);
-
-                    repository.add(livro);
-                    break;
-                case (0):
-                    System.out.println("Saindo...");
-                    break;
-                default:
-                    System.out.println("Operação inválida.");
+                switch (control) {
+                    case (1):
+                        BuscarTitulo();
+                        break;
+                    case (0):
+                        System.out.println("Saindo...");
+                        break;
+                    default:
+                        System.out.println("Operação inválida.");
+                }
             }
+
         }
+
+    public void ImprimeMenu() {
+
+        String TEXTO_MENU = """
+                
+                Escolha uma opção:
+                1 - Buscar um livro no Gutendex.
+                
+                
+                """;
+        System.out.println(TEXTO_MENU);
+    }
+
+    //
+    public void BuscarTitulo () {
+        System.out.println("Insira o título do livro que deseja buscar:");
+
+        String buscarTitulo = scanner.nextLine();
+
+        var json = consultas.requestData(buscarTitulo.replace(" ", "%20"));
+        //System.out.println("json: " + json);
+        var dados = converter.converterDados(json, Gutendex.class);
+        //System.out.println("dados" + dados);
 
     }
 
-}
+    }
