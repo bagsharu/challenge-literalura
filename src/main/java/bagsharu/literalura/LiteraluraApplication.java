@@ -21,7 +21,7 @@ public class LiteraluraApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		System.out.println("Hello World!");
 
-		Principal principal = new Principal();
+		Principal principal = new Principal(repository);
 
 		principal.IniciarMenu();
 	}
