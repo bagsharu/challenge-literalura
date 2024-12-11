@@ -18,7 +18,7 @@ public class Autor {
     private Integer anoNascimento;
     private Integer anoFalecimento;
 
-    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "autorLivro", cascade = CascadeType.ALL)
     private List<Livro> livrosAutor;
 
     public Autor () {
