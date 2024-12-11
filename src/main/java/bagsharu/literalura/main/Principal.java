@@ -14,7 +14,6 @@ public class Principal {
     private LivrosRepository repository;
 
     private Scanner scanner = new Scanner(System.in);
-    private Menu controleMenu = new Menu();
 
     private ConsultaAPI consultas = new ConsultaAPI();
     private ConverteDados converter = new ConverteDados();
