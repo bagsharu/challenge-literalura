@@ -1,6 +1,7 @@
 package bagsharu.literalura.main;
 
 import bagsharu.literalura.model.*;
+import bagsharu.literalura.repository.AutoresRepository;
 import bagsharu.literalura.repository.LivrosRepository;
 import bagsharu.literalura.service.ConsultaAPI;
 import bagsharu.literalura.service.ConverteDados;
@@ -11,14 +12,16 @@ import java.util.Scanner;
 public class Principal {
 
     private LivrosRepository Livrorepository;
+    private AutoresRepository Autorrepository;
 
     private Scanner scanner = new Scanner(System.in);
 
     private ConsultaAPI consultas = new ConsultaAPI();
     private ConverteDados converter = new ConverteDados();
 
-    public Principal(LivrosRepository repository) {
+    public Principal(LivrosRepository repository, AutoresRepository autoresRepository) {
         this.Livrorepository = repository;
+        this.Autorrepository = autoresRepository;
     }
 
         public void IniciarMenu() {
@@ -112,7 +115,21 @@ public class Principal {
                 System.out.println("Erro: " + e.getMessage());
             }
         }
+
+        Optional<Autor> autorBusca = Autorrepository.findByNomeAutorContains(autor.getNomeAutor());
+        if (autorBusca.isPresent()){
+            System.out.println("Este autor já está registrado!");
+        } else {
+            try{
+                Autorrepository.save(autor);
+                System.out.println("Autor registrado com sucesso!");
+            } catch (Exception e) {
+                System.out.println("Erro: " + e.getMessage());
+            }
+        }
     }
+
+
 
 
 
