@@ -51,6 +51,9 @@ public class Principal {
                     case (4):
                         BuscarAutorAno();
                         break;
+                    case (5):
+                        BuscarLivroIdioma();
+                        break;
                     case (0):
                         System.out.println("Saindo...");
                         break;
@@ -60,7 +63,6 @@ public class Principal {
             }
 
         }
-
 
     public void ImprimeMenu() {
 
@@ -177,6 +179,31 @@ public class Principal {
                     .forEach(System.out::println);
         }
     }
+
+    private void BuscarLivroIdioma() {
+        String MENU_IDIOMAS = """
+                               Selecione um idioma:
+                               - pt : Português
+                               - en : Inglês
+                               - es : Espanhol
+                               - fr : Frencês
+                               """;
+
+        System.out.println(MENU_IDIOMAS);
+        String idioma = scanner.nextLine();
+
+        livros = Livrorepository.findByLinguagemLivroContains(idioma);
+
+        if (livros.isEmpty()) {
+            System.out.println("O idioma procurado não consta nos livros registrados");
+        } else {
+            livros.stream()
+                    .sorted(Comparator.comparing(Livro::getTituloLivro))
+                    .forEach(System.out::println);
+        }
+    }
+
+
 
 
 
