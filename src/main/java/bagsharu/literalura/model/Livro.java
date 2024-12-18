@@ -47,4 +47,13 @@ public class Livro {
     public Integer getDownloadTotal() {
         return downloadTotal;
     }
+
+    @Override
+    public String toString() {
+        return "***** Informações Liuvro *****" +
+                "\nTítulo: " + getTituloLivro() +
+                "\nAutor: " + getAutorLivro() +
+                "\nIdioma: " + getLinguagemLivro() +
+                "\nTotal Downloads: " + getDownloadTotal();
+    }
 }
