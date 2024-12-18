@@ -6,6 +6,8 @@ import bagsharu.literalura.repository.LivrosRepository;
 import bagsharu.literalura.service.ConsultaAPI;
 import bagsharu.literalura.service.ConverteDados;
 
+import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -15,6 +17,8 @@ public class Principal {
     private AutoresRepository Autorrepository;
 
     private Scanner scanner = new Scanner(System.in);
+
+    private List<Livro> livros;
 
     private ConsultaAPI consultas = new ConsultaAPI();
     private ConverteDados converter = new ConverteDados();
@@ -37,6 +41,9 @@ public class Principal {
                     case (1):
                         BuscarTitulo();
                         break;
+                    case (2):
+                        ListarLivros();
+                        break;
                     case (0):
                         System.out.println("Saindo...");
                         break;
@@ -46,6 +53,7 @@ public class Principal {
             }
 
         }
+
 
     public void ImprimeMenu() {
 
@@ -129,8 +137,21 @@ public class Principal {
         }
     }
 
+    private void ListarLivros() {
 
+        System.out.println("***** Livros Registrados *****");
+        livros = Livrorepository.findAll();
 
-
-
+        livros.stream()
+                .sorted(Comparator.comparing(Livro::getTituloLivro))
+                .forEach(System.out::println);
     }
+
+
+
+
+
+
+
+
+}
