@@ -1,8 +1,6 @@
 package bagsharu.literalura.main;
 
-import bagsharu.literalura.model.Gutendex;
-import bagsharu.literalura.model.Livro;
-import bagsharu.literalura.model.LivroInfo;
+import bagsharu.literalura.model.*;
 import bagsharu.literalura.repository.LivrosRepository;
 import bagsharu.literalura.service.ConsultaAPI;
 import bagsharu.literalura.service.ConverteDados;
@@ -73,7 +71,7 @@ public class Principal {
         var json = consultas.requestData(buscarTitulo.replace(" ", "%20"));
         //System.out.println("json: " + json);
         var dados = converter.converterDados(json, Gutendex.class);
-        //System.out.println("dados" + dados);
+        System.out.println("dados" + dados);
 
         // Validação das informacoes recebidas
         if (dados.livrosBusca().isEmpty()) {
@@ -83,9 +81,16 @@ public class Principal {
             LivroInfo livroInfo = dados.livrosBusca().get(0);
             System.out.println("Dados do título: " + livroInfo);
 
-            // Instancia um objeto de Livro com todas as informacoes da API
+            // Recebe o primeiro autor do array "results"
+            AutorInfo autorInfo = dados.livrosBusca().get(0).autorLivro().get(0);
+
+
+            // Instancia um objeto de Livro e Autor com todas as informacoes da API
             Livro livro = new Livro(livroInfo);
             System.out.println(livro);
+
+            Autor autor = new Autor(autorInfo);
+            System.out.println(autor);
         }
     }
 
