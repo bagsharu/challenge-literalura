@@ -51,4 +51,13 @@ public class Autor {
     public Long getId() {
         return id;
     }
+
+
+    @Override
+    public String toString() {
+        return "***** Informações Autor *****" +
+                "\nNome: " + getNomeAutor() +
+                "\nAno Nascimento: " + getAnoNascimento() +
+                "\nAno Falecimento: " + getAnoFalecimento();
+    }
 }
