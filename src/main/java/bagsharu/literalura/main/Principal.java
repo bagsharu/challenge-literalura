@@ -48,6 +48,9 @@ public class Principal {
                     case (3):
                         ListarAutores();
                         break;
+                    case (4):
+                        BuscarAutorAno();
+                        break;
                     case (0):
                         System.out.println("Saindo...");
                         break;
@@ -158,6 +161,21 @@ public class Principal {
         autores.stream()
                 .sorted(Comparator.comparing(Autor::getNomeAutor))
                 .forEach(System.out::println);
+    }
+
+    private void BuscarAutorAno() {
+        System.out.println("Digite o ano que deseja buscar um autor");
+        Integer anoBusca = scanner.nextInt();
+
+        autores = Autorrepository.buscarAno(anoBusca);
+
+        if (autores.isEmpty()) {
+            System.out.println("Não há autores vivos no ano de " + anoBusca);
+        } else {
+            autores.stream()
+                    .sorted(Comparator.comparing(Autor::getNomeAutor))
+                    .forEach(System.out::println);
+        }
     }
 
 
