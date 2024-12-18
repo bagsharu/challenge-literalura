@@ -92,16 +92,25 @@ public class Principal {
 
             Autor autor = new Autor(autorInfo);
             System.out.println(autor);
+
+            SalvarDados(livro,autor);
         }
     }
 
     // Salva dados no banco de dados
     public void SalvarDados(Livro livro, Autor autor) {
 
-        Optional<Livro> livroBusca = Livrorepository.findByTituloContains(livro.getTituloLivro());
+        Optional<Livro> livroBusca = Livrorepository.findByTituloLivroContains(livro.getTituloLivro());
 
         if (livroBusca.isPresent()){
             System.out.println("Este livro já está registrado!");
+        } else {
+            try {
+                Livrorepository.save(livro);
+                System.out.println("Livro registrado com sucesso");
+            } catch (Exception e) {
+                System.out.println("Erro: " + e.getMessage());
+            }
         }
     }
 
