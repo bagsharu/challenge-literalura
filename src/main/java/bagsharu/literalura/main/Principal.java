@@ -51,7 +51,12 @@ public class Principal {
                 
                 Escolha uma opção:
                 1 - Buscar um livro no Gutendex.
+                2 - Listar Livros no banco de daods.
+                3 - Listar Autores no banco de dados.
+                4 - Procurar Autor por Ano.
+                5 - Procurar Livro por Idioma.
                 
+                0 - Sair
                 
                 """;
         System.out.println(TEXTO_MENU);
@@ -83,5 +88,7 @@ public class Principal {
             System.out.println(livro);
         }
     }
+
+
 
     }
