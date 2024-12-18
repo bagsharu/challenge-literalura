@@ -5,11 +5,12 @@ import bagsharu.literalura.repository.LivrosRepository;
 import bagsharu.literalura.service.ConsultaAPI;
 import bagsharu.literalura.service.ConverteDados;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Principal {
 
-    private LivrosRepository repository;
+    private LivrosRepository Livrorepository;
 
     private Scanner scanner = new Scanner(System.in);
 
@@ -17,7 +18,7 @@ public class Principal {
     private ConverteDados converter = new ConverteDados();
 
     public Principal(LivrosRepository repository) {
-        this.repository = repository;
+        this.Livrorepository = repository;
     }
 
         public void IniciarMenu() {
@@ -91,6 +92,16 @@ public class Principal {
 
             Autor autor = new Autor(autorInfo);
             System.out.println(autor);
+        }
+    }
+
+    // Salva dados no banco de dados
+    public void SalvarDados(Livro livro, Autor autor) {
+
+        Optional<Livro> livroBusca = Livrorepository.findByTituloContains(livro.getTituloLivro());
+
+        if (livroBusca.isPresent()){
+            System.out.println("Este livro já está registrado!");
         }
     }
 
