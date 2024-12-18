@@ -19,6 +19,7 @@ public class Principal {
     private Scanner scanner = new Scanner(System.in);
 
     private List<Livro> livros;
+    private List<Autor> autores;
 
     private ConsultaAPI consultas = new ConsultaAPI();
     private ConverteDados converter = new ConverteDados();
@@ -43,6 +44,9 @@ public class Principal {
                         break;
                     case (2):
                         ListarLivros();
+                        break;
+                    case (3):
+                        ListarAutores();
                         break;
                     case (0):
                         System.out.println("Saindo...");
@@ -146,6 +150,16 @@ public class Principal {
                 .sorted(Comparator.comparing(Livro::getTituloLivro))
                 .forEach(System.out::println);
     }
+
+    private void ListarAutores() {
+        System.out.println("***** Autores Registrados *****");
+        autores = Autorrepository.findAll();
+
+        autores.stream()
+                .sorted(Comparator.comparing(Autor::getNomeAutor))
+                .forEach(System.out::println);
+    }
+
 
 
 
