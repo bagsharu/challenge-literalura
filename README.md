@@ -1,3 +1,10 @@
+
+<div>
+    <p>
+        <img src="badge_literalura.png" height="300" tittle="site"> 
+    </p>
+</div>
+
 # Literalura
 
 Literalura é uma aplicação desenvolvida em **Spring Boot** com integração ao banco de dados **PostgreSQL**, que permite buscar e gerenciar dados de livros e autores utilizando a API pública [Gutendex](https://gutendex.com/). A interação com o usuário ocorre através de um menu no terminal, permitindo diversas operações relacionadas a livros e autores.
@@ -94,9 +101,3 @@ mvn spring-boot:run
 
 Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull requests com sugestões de melhorias.
 
-
-<div>
-    <p>
-        <img src="badge_literalura.png" height="300" tittle="site"> 
-    </p>
-</div>
